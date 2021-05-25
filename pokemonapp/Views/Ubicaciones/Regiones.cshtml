@@ -1,0 +1,22 @@
+@model List<Region>
+
+<h1>Listar Regiones</h1>
+<table class="">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Operaciones</th>
+    </tr>
+    @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id/td>
+                <td>@item.Nombre</td>
+                <td>
+                    <a href="">Editar</a>
+                    <a href="">Borrar</a>
+                </td>
+            </tr>
+            
+        }
+</table>
