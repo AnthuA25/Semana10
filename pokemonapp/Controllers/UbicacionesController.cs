@@ -1,5 +1,6 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using pokemonapp.Models;
 
@@ -18,6 +19,32 @@ namespace pokemonapp.Controllers
             //var regiones=_context.Regiones.OrderBy(r=> r.Nombre).ToList();
             return View(regiones);
         }
+        public IActionResult Pueblos(){
+            //otra opcion para traer los datos de la base de datos a la web
+            var pueblos=_context.Pueblos.Include(x=>x.Region).OrderBy(r=> r.Nombre).ToList();
+            //var regiones=_context.Regiones.OrderBy(r=> r.Nombre).ToList();
+            return View(pueblos);
+        }
+        public IActionResult NuevoPueblo(){
+            //LISTA DE COLECCIONES
+            ViewBag.Regiones = _context.Regiones.ToList().Select(r =>new SelectListItem(r.Nombre,r.Id.ToString()));
+            return View();
+        }
+        //
+        [HttpPost]
+        public IActionResult NuevoPueblo(Pueblo r){
+             if(ModelState.IsValid){
+                _context.Add(r);
+                _context.SaveChanges();
+
+                return RedirectToAction("NuevoPuebloConfirmacion");
+            }
+            return View(r);
+        }
+        public IActionResult NuevoPuebloConfirmacion(){
+            return View();
+        }
+        //PRG = de pueblo esta lista
         public IActionResult NuevaRegion(){
             return View();
         }
