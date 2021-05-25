@@ -1,0 +1,10 @@
+@model Region
+<h1>Nueva Region</h1>
+<form method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="form-group">
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" type="text" class="form-control" />
+    </div>
+    <button class="btn btn-primary">Editar</button>
+</form>
