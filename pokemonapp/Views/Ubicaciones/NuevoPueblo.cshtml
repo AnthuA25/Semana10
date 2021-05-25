@@ -1,0 +1,13 @@
+@model Pueblo
+<h1>Nuevo Pueblo</h1>
+<form method="post">
+        <div class="form-group">
+            <label asp-for="Nombre"></label>
+            <input asp-for="Nombre" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Region"></label>
+            <select asp-for="RegionId" asp-items="ViewBag.Regiones" type="text" class="form-control"></select>
+        </div>
+        <button class="btn btn-primary">Registrar</button>
+    </form>

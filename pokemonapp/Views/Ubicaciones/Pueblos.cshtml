@@ -1,11 +1,11 @@
-@model List<Region>
+@model List<Pueblo>
 
-<h1>Listar Regiones</h1>
+<h1>Listar Pueblos</h1>
 <table class="table border">
     <tr>
         <th>Id</th>
         <th>Nombre</th>
-        <th>Pueblos</th>
+        <th>Region</th>
         <th>Operaciones</th>
     </tr>
     @foreach (var item in Model)
@@ -14,12 +14,9 @@
             <td>@item.Id</td>
             <td>@item.Nombre</td>
             <td>
-                @foreach (var pueblo in item.Pueblos)
-                {
-                    <span>@pueblo.Nombre</span>
-                }
+                @item.Region.Nombre
             </td>
-            <td>
+            <td><!--Actualizar-->
                 <a href="/ubicaciones/EditarRegion/@item.Id" class="btn btn-secondary">Editar</a>
                 <form action="/ubicaciones/BorrarRegion" method="post" class="d-inline-block">
                     <input type="hidden" name="id" value="@item.Id">
@@ -30,8 +27,8 @@
     }
     @if(Model.Count ==0){
         <tr>
-            <td colspan="4" class="text-center">No se encontraron regiones</td>
+            <td colspan="4" class="text-center">No se encontraron pueblos</td>
         </tr>
     }
 </table>
-<a href="/ubicaciones/nuevaregion" class="btn btn-primary">Añadir región</a>
+<a href="/ubicaciones/nuevopueblo" class="btn btn-primary">Añadir pueblo</a>
